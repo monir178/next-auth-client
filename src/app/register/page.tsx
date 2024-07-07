@@ -1,8 +1,11 @@
 "use client";
 
+import { registerUser } from "@/utils/actions/registerUser";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export type UserData = {
   username: string;
@@ -17,10 +20,20 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<UserData>();
 
+  const router = useRouter();
+
   const onSubmit = async (data: UserData) => {
-    console.log(data);
+    // console.log(data);
 
     try {
+      const res = await registerUser(data);
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message, {
+          duration: 2000,
+        });
+        router.push("/login");
+      }
     } catch (err: any) {
       console.error(err.message);
       throw new Error(err.message);

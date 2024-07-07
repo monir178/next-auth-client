@@ -17,7 +17,10 @@ const DashboardPage = async () => {
             Email: {session?.user?.email}
           </h1>
           <Image
-            src={session?.user?.image}
+            src={
+              session?.user?.image ||
+              "https://www.svgrepo.com/show/13644/avatar.svg"
+            }
             width={100}
             height={100}
             alt="user image"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { Toaster } from "sonner";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import { getServerSession } from "next-auth";
@@ -20,6 +20,7 @@ export default async function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body>
+        <Toaster />
         <Navbar session={session} />
         <div className="min-h-screen w-[90%] mx-auto">{children}</div>
       </body>
